@@ -98,7 +98,7 @@ def drawGrid(win, rows, width):
     for i in range(rows):
         pygame.draw.line(win, GREY, (0,i * gap), (width, i * gap))
         for j in range(rows):
-            pygame.draw.line(win, GREY, (0,j * gap), (width, j * gap))
+            pygame.draw.line(win, GREY, (j * gap,0), (j * gap,width))
 
 def draw(win, grid, rows, width):
     win.fill(WHITE)
@@ -132,6 +132,7 @@ def main (win, width):
     started = False
 
     while run:
+        draw(win,grid,ROWS, width)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -139,8 +140,8 @@ def main (win, width):
             if started:
                 continue
             
-            if pygame.mouse.get_Pressed()[0]:
-                pos = pygame.mouse.getPos()
+            if pygame.mouse.get_pressed()[0]:
+                pos = pygame.mouse.get_pos()
                 row , col = getClickedPos(pos,ROWS,width)
                 node = grid[row][col]
                 if not start:
@@ -156,12 +157,11 @@ def main (win, width):
 
 
             elif pygame.mouse.get_pressed()[2]:
-
-
-            
-
+                pass
 
     pygame.quit()
+
+main(WIN, WIDTH)
 
 
 
