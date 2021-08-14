@@ -104,6 +104,17 @@ def draw(win, grid, rows, width):
         for node in row:
             node.draw(win)
 
+    drawGrid(win, rows, width)
+    pygame.display.update()
+
+def getClickedPos(pos, rows, width):
+    gap = width // rows
+    y, x = pos
+
+    row = y // gap
+    col = x // gap
+    
+    return row, col
 
 
 
