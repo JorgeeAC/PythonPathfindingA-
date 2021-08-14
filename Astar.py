@@ -118,6 +118,15 @@ def getClickedPos(pos, rows, width):
 
 
 
+def main (win, width):
+    ROWS = 50
+    grid = makeGrid(ROWS, width)
+
+    start = None
+    end = None
+
+    
+
 
 
 
