@@ -31,7 +31,7 @@ class Node:
     #These methods are following the process of checking
     # the color of the node to see it's condition
     #Red - Closed, Black - Border etc
-    def get_pos(self):
+    def getPos(self):
         return self.row, self.col
 
     def isClosed(self):
@@ -54,6 +54,9 @@ class Node:
     def makeClosed(self):
         self.color = RED
     
+    def makeStart(self):
+        self.color = ORANGE
+
     def makeOpen(self):
         self.color = GREEN
     def makeBarrier(self):
@@ -125,7 +128,40 @@ def main (win, width):
     start = None
     end = None
 
-    
+    run = True
+    started = False
+
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+            if started:
+                continue
+            
+            if pygame.mouse.get_Pressed()[0]:
+                pos = pygame.mouse.getPos()
+                row , col = getClickedPos(pos,ROWS,width)
+                node = grid[row][col]
+                if not start:
+                    start = node
+                    start.makeStart()
+
+                elif not end:
+                    end = node
+                    end.makeEnd()
+                
+                elif node != end and node != start: 
+                    node.makeBarrier()
+
+
+            elif pygame.mouse.get_pressed()[2]:
+
+
+            
+
+
+    pygame.quit()
 
 
 
